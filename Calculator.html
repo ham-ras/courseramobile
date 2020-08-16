@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>Mini Web-Calculator</title>
+	<style type="text/css">
+		body{
+			background-color: lightgrey;
+			font-size: 20px;
+		}
+		h1{
+			text-align: center;
+		}
+		form{
+			margin-left: 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		function calculatecircle(){
+			if (document.frm.area_radius.value == 0){
+				alert("Enter the radius");
+			}
+			else if (isNaN(document.frm.area_radius.value)){
+				alert("Enter a number as the radius");
+			}
+			else{
+				var ansarea,r,anscircum;
+				r = document.frm.area_radius.value;
+				ansarea = (22/7)*r*r;
+				anscircum = 2*(22/7)*r;
+				document.frm.areac.value = ansarea;
+				document.frm.circum.value = anscircum;
+			}
+		}
+		function calculaterect(){
+				var area,peri,l,b;
+				l = document.frm.length.value;
+				b = document.frm.breadth.value;
+				area = l*b;
+				peri = 2*(l+b);
+				document.getElementById("rect").innerHTML="<br>The area is "+area+"<br>The perimeter is "+peri;
+		}
+		function printprime(){
+			var limit,i,j,c;
+			limit = document.frm.limit.value;
+                for (i = 1; i <= limit; i++) {
+                    c = 0;
+                    for (j = 1; j <= i; j++) {
+                        
+                        if (i % j == 0) {
+                  
+                            c++;
+                        }
+                    }
+ 
+                    if (c == 2) {
+                         document.getElementById("result").insertAdjacentHTML('beforeend', i + '<br>');
+                    }
+                }
+            }
+
+		
+
+	</script>
+</head>
+<body>
+	<center><h1>Mini Calculator</h1></center>
+	<form name="frm">
+		<fieldset>
+			<legend><h3>To find area and circumference of the circle</h3></legend>	
+		<p>Enter the radius : <input type="text" name="area_radius"></p>
+		<p>Area :  <input type="text" name="areac"> &nbsp;
+		Circumference :  <input type="text" name="circum"></p>
+		<input type="button" name="area" value="Calculate" onclick="calculatecircle()">
+		</fieldset>
+		<br> 
+		<fieldset>
+			<legend><h3>To find perimeter and area of the rectangle</h3></legend>	
+		<p>Enter the length : <input type="text" name="length">
+		&nbsp&nbsp Enter the breadth : <input type="text" name="breadth"></p>
+		<input type="button" name="rect" value="Calculate" onclick="calculaterect()"> 
+		<div id=rect></div>
+		</fieldset><br>
+		<fieldset><legend><h3>Prime Numbers</h3></legend>
+			<p>Enter the limit	: <input type="number" min="1" name="limit"></p>
+			<input type="button" name="show" value="show" onclick="printprime()">	
+			<div id="result"></div>					
+		</fieldset>
+	</form>
+</body>
+</html>
